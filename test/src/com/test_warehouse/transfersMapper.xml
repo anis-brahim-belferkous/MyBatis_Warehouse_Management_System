@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test_warehouse.transfersMapper">
+
+    <resultMap id="transfersMap" type="transfers">
+        <id column="id" property="id" />
+        <result column="box_id" property="boxId" />
+        <result column="source_position_id" property="sourcePositionId" />
+        <result column="destination_position_id" property="destinationPositionId" />
+        <result column="transfer_type" property="transferType" />
+        <result column="transfer_date" property="transferDate" />
+    </resultMap>
+
+    <select id="getAllTransfers" resultMap="transfersMap">
+        SELECT * FROM transfers
+    </select>
+
+    <select id="getTransferById" resultMap="transfersMap" parameterType="int">
+        SELECT * FROM transfers WHERE id = #{id}
+    </select>
+
+    <insert id="insertTransfer" parameterType="transfers">
+        INSERT INTO transfers (id, box_id, source_position_id, destination_position_id, transfer_type, transfer_date)
+        VALUES (#{id}, #{boxId}, #{sourcePositionId}, #{destinationPositionId}, #{transferType}, #{transferDate})
+    </insert>
+
+    <update id="updateTransfer" parameterType="transfers">
+        UPDATE transfers
+        SET box_id = #{boxId},
+            source_position_id = #{sourcePositionId},
+            destination_position_id = #{destinationPositionId},
+            transfer_type = #{transferType},
+            transfer_date = #{transferDate}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteTransfer" parameterType="int">
+        DELETE FROM transfers WHERE id = #{id}
+    </delete>
+
+</mapper>

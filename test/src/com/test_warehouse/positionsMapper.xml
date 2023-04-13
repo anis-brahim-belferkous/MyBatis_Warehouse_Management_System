@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test_warehouse.positionsMapper">
+
+  <resultMap id="positionResultMap" type="positions">
+    <id column="id" property="id"/>
+    <result column="shelf_id" property="shelfId"/>
+    <result column="zone" property="zone"/>
+  </resultMap>
+
+  <select id="getAllPositions" resultMap="positionResultMap">
+    SELECT * FROM positions
+  </select>
+
+  <select id="getPositionById" parameterType="int" resultMap="positionResultMap">
+    SELECT * FROM positions WHERE id = #{id}
+  </select>
+
+  <insert id="addPosition" parameterType="positions">
+    INSERT INTO positions (shelf_id, zone) VALUES (#{shelfId}, #{zone})
+  </insert>
+
+  <update id="updatePosition" parameterType="positions">
+    UPDATE positions SET shelf_id=#{shelfId}, zone=#{zone} WHERE id=#{id}
+  </update>
+
+  <delete id="deletePosition" parameterType="int">
+    DELETE FROM positions WHERE id = #{id}
+  </delete>
+
+</mapper>

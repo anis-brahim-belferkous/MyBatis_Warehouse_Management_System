@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+		
+        <typeAlias type="com.test_warehouse.rows" alias="rows"/>
+        <typeAlias type="com.test_warehouse.items" alias="items"/>
+        <typeAlias type="com.test_warehouse.boxes" alias="boxes"/>
+        <typeAlias type="com.test_warehouse.shelves" alias="shelves"/>
+        <typeAlias type="com.test_warehouse.transfers" alias="transfers"/>
+        <typeAlias type="com.test_warehouse.positions" alias="positions"/>
+
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+				<!-- You can use another kind od drivers instead of using sqlite-->
+
+                <property name="driver" value="org.sqlite.JDBC"/>
+                
+                <!-- You need to change url and put your current database pash or localhost address-->
+                
+                <property name="url" value="jdbc:sqlite:C:\Users\user\eclipse-workspace\test\src\com\test_warehouse\warehouseDB.db"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="com/test_warehouse/rowsMapper.xml"/>
+        <mapper resource="com/test_warehouse/itemsMapper.xml"/>
+        <mapper resource="com/test_warehouse/boxesMapper.xml"/>
+        <mapper resource="com/test_warehouse/shelvesMapper.xml"/>
+        <mapper resource="com/test_warehouse/transfersMapper.xml"/>
+        <mapper resource="com/test_warehouse/positionsMapper.xml"/>
+    </mappers>
+    
+</configuration>

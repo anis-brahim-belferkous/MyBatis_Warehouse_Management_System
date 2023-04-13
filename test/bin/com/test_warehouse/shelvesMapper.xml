@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test_warehouse.shelvesMapper">
+
+  <resultMap id="shelvesResultMap" type="shelves">
+    <id column="id" property="id"/>
+    <result column="row_id" property="rowId"/>
+    <result column="level" property="level"/>
+  </resultMap>
+
+  <select id="getAllShelves" resultMap="shelvesResultMap">
+    SELECT * FROM shelves
+  </select>
+
+  <select id="getShelfById" parameterType="int" resultMap="shelvesResultMap">
+    SELECT * FROM shelves WHERE id = #{id}
+  </select>
+
+  <insert id="addShelf" parameterType="shelves">
+    INSERT INTO shelves (row_id, level) VALUES (#{rowId}, #{level})
+  </insert>
+
+  <update id="updateShelf" parameterType="shelves">
+    UPDATE shelves SET row_id=#{rowId}, level=#{level} WHERE id=#{id}
+  </update>
+  
+  <delete id="deleteShelf" parameterType="int">
+    DELETE FROM shelves WHERE id = #{id}
+  </delete>
+</mapper>
